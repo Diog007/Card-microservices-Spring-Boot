@@ -26,4 +26,13 @@ public class ClientesController {
         return ResponseEntity.created(headerLocation).build();
     }
 
+    @GetMapping(params = "cpf")
+    public ResponseEntity dadosCliente(@RequestParam("cpf") String cpf){
+        var cliente = service.getByCPF(cpf);
+        if (cliente.isEmpty()){
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(cliente);
+    }
+
 }
