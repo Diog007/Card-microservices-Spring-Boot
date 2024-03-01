@@ -17,11 +17,12 @@ public class Cliente {
     @Column
     private String nome;
     @Column
-    private String idade;
+    private Integer idade;
 
-    public Cliente(String cpf, String nome, String idade) {
+    public Cliente(String cpf, String nome, Integer idade) {
         this.cpf = cpf;
         this.nome = nome;
         this.idade = idade;
     }
+
 }
