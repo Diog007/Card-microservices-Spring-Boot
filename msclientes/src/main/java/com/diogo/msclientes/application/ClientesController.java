@@ -1,11 +1,29 @@
 package com.diogo.msclientes.application;
 
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import com.diogo.msclientes.application.representation.ClienteSaveRequest;
+import com.diogo.msclientes.domain.Cliente;
+import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.*;
+import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
+
+import java.net.URI;
 
 @RestController
 @RequestMapping("/clientes")
+@RequiredArgsConstructor
 public class ClientesController {
+
+    private final ClienteService service;
+
+    @PostMapping
+    public ResponseEntity save(@RequestBody ClienteSaveRequest request){
+        var cliente = request.toModel();
+        service.save(cliente);
+        URI headerLocation = ServletUriComponentsBuilder.fromCurrentRequest()
+                .query("cpf={cpf}").buildAndExpand(cliente.getCpf()).toUri();
+        return ResponseEntity.created(headerLocation).build();
+    }
 
 }
