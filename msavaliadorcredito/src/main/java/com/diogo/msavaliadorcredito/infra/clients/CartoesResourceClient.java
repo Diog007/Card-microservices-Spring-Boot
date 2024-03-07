@@ -1,5 +1,6 @@
 package com.diogo.msavaliadorcredito.infra.clients;
 
+import com.diogo.msavaliadorcredito.domain.model.Cartao;
 import com.diogo.msavaliadorcredito.domain.model.CartaoCliente;
 import com.diogo.msavaliadorcredito.domain.model.DadosCliente;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -14,4 +15,7 @@ public interface CartoesResourceClient {
 
     @GetMapping(params = "cpf")
     ResponseEntity<List<CartaoCliente>> getCartoesByCliente(@RequestParam("cpf") String cpf);
+
+    @GetMapping(params = "renda")
+    public ResponseEntity<List<Cartao>> listCartoesRendaAte (@RequestParam("renda") Long renda);
 }
