@@ -3,7 +3,6 @@ package com.diogo.msavaliadorcredito.application;
 import com.diogo.msavaliadorcredito.application.ex.DadosClienteNotFoundException;
 import com.diogo.msavaliadorcredito.application.ex.ErroComunicacaoMicroservicesException;
 import com.diogo.msavaliadorcredito.domain.model.DadosAvaliacao;
-import com.diogo.msavaliadorcredito.domain.model.RetornoAvaliacaoCliente;
 import com.diogo.msavaliadorcredito.domain.model.SituacaoCliente;
 import jakarta.ws.rs.PathParam;
 import lombok.RequiredArgsConstructor;
@@ -40,8 +39,9 @@ public class AvaliadorCreditoController {
         try {
             var retornoAvaliacaoCliente = avaliadorCreditoService
                     .realizarAvaliacao(dados.getCpf(), dados.getRenda());
-
+            
             return ResponseEntity.ok(retornoAvaliacaoCliente);
+
         } catch (DadosClienteNotFoundException e) {
             return ResponseEntity.notFound().build();
         } catch (ErroComunicacaoMicroservicesException e) {
