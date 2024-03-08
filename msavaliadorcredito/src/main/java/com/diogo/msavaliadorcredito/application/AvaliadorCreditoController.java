@@ -2,7 +2,10 @@ package com.diogo.msavaliadorcredito.application;
 
 import com.diogo.msavaliadorcredito.application.ex.DadosClienteNotFoundException;
 import com.diogo.msavaliadorcredito.application.ex.ErroComunicacaoMicroservicesException;
+import com.diogo.msavaliadorcredito.application.ex.ErroSolicitacaoCartaoException;
 import com.diogo.msavaliadorcredito.domain.model.DadosAvaliacao;
+import com.diogo.msavaliadorcredito.domain.model.DadosSolicitacaoEmissaoCartao;
+import com.diogo.msavaliadorcredito.domain.model.ProtocoloSolicitacaoCartao;
 import com.diogo.msavaliadorcredito.domain.model.SituacaoCliente;
 import jakarta.ws.rs.PathParam;
 import lombok.RequiredArgsConstructor;
@@ -49,4 +52,16 @@ public class AvaliadorCreditoController {
         }
     }
 
+    @PostMapping("solicitacoes-cartao")
+    public ResponseEntity solicitarCartao(@RequestBody DadosSolicitacaoEmissaoCartao dados){
+        try {
+            ProtocoloSolicitacaoCartao protocoloSolicitacaoCartao = avaliadorCreditoService
+                    .solicitarEmissaoCartao(dados);
+
+            return ResponseEntity.ok(protocoloSolicitacaoCartao);
+
+        }catch (ErroSolicitacaoCartaoException e){
+            return ResponseEntity.internalServerError().body(e.getMessage());
+        }
+    }
 }
