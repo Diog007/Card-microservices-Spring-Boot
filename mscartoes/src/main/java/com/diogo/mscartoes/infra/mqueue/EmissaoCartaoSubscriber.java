@@ -28,6 +28,7 @@ public class EmissaoCartaoSubscriber {
             Cartao cartao = cartaoRepository.findById(dados.getIdCartao()).orElseThrow();
 
             ClienteCartao clienteCartao = new ClienteCartao();
+
             clienteCartao.setCartao(cartao);
             clienteCartao.setCpf(dados.getCpf());
             clienteCartao.setLimite(dados.getLimiteLiberado());
