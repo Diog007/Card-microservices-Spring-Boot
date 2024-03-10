@@ -2,6 +2,8 @@ package com.diogo.msclientes.application;
 
 import com.diogo.msclientes.application.representation.ClienteSaveRequest;
 import lombok.RequiredArgsConstructor;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.support.ServletUriComponentsBuilder;
@@ -12,6 +14,7 @@ import java.net.URI;
 @RequestMapping("/clientes")
 @RequiredArgsConstructor
 public class ClientesController {
+    private static final Logger log = LoggerFactory.getLogger(ClientesController.class);
 
     private final ClienteService service;
 
