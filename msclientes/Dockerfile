@@ -17,7 +17,6 @@ WORKDIR /app
 #e definindo para onde desejo copiar
 COPY --from=build ./app/target/*.jar ./app.jar
 
-ENV RABBITMQ_SERVER=rabbit-host
 ARG EUREKA_SERVER=localhost
 
 #comando para rodar a imagem "app.jar"
