@@ -20,4 +20,4 @@ COPY --from=build ./app/target/*.jar ./app.jar
 ARG EUREKA_SERVER=localhost
 
 #comando para rodar a imagem "app.jar"
-ENTRYPOINT java -jar app.jar
+ENTRYPOINT java -jar -Dspring.profiles.active=production app.jar

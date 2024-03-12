@@ -21,4 +21,4 @@ ENV RABBITMQ_SERVER=rabbit-host
 ARG EUREKA_SERVER=localhost
 
 #comando para rodar a imagem "app.jar"
-ENTRYPOINT java -jar app.jar
+ENTRYPOINT java -jar -Dspring.profiles.active=production app.jar
